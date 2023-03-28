@@ -1,0 +1,32 @@
+@use '@angular/material' as mat;
+
+@include mat.core();
+
+
+$primary: mat.define-palette(mat.$blue-palette, 700);
+$accent: mat.define-palette(mat.$orange-palette, 600);
+$warn: mat.define-palette(mat.$red-palette, 400);
+
+$theme: mat.define-light-theme($primary, $accent, $warn);
+
+@include mat.all-component-themes($theme);
+
+// Copy the palettes from your selected theme (usually theme.scss).
+$app-primary: mat.define-palette(mat.$blue-palette, 700);
+$app-accent: mat.define-palette(mat.$orange-palette, 600);
+$app-warn: mat.define-palette(mat.$deep-orange-palette, 400);
+
+// Create your Sass color vars (will be available in all the project)
+$primary-color: mat.get-color-from-palette($app-primary);
+$accent-color: mat.get-color-from-palette($app-accent);
+$warn-color: mat.get-color-from-palette($app-warn);
+:root {
+	--primary-color: #{$primary-color};
+	--accent-color: #{$accent-color};
+	--warn-color: #{$warn-color};
+}
+
+.mat-flat-button.mat-accent, .mat-raised-button.mat-accent, .mat-fab.mat-accent, .mat-mini-fab.mat-accent,
+.mat-flat-button.mat-warn, .mat-raised-button.mat-warn, .mat-fab.mat-warn, .mat-mini-fab.mat-warn {
+	color: white;
+}
